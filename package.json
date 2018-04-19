@@ -1,0 +1,25 @@
+{
+  "name": "tiddly-node-saver",
+  "version": "1.0.0",
+  "description": "A node.js saver for Classic TiddlyWiki ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fallwest/tiddly-node-saver.git"
+  },
+  "keywords": [
+    "TiddlyWiki"
+  ],
+  "author": "James Westfall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fallwest/tiddly-node-saver/issues"
+  },
+  "homepage": "https://github.com/fallwest/tiddly-node-saver#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
