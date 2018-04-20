@@ -30,7 +30,7 @@ Create a new tiddler with the following code:
 	
 	//}}}
 
-Tag with SystemConfig and save. This code will only override default saving behaviour if your tiddlywiki i served by tiddly-node-saver.
+Tag with SystemConfig and save. This code will only override default saving behaviour if your tiddlywiki is served by tiddly-node-saver.
 
 ### Configure and install server 
 
@@ -58,8 +58,8 @@ You probably need to set ```config.options.chkHttpReadOnly``` to false in order 
 Download NSSM from <https://nssm.cc/> or install with Chocolatey  
 Run command ```nssm install tiddlysaver```  
 Fill in the form with the following values:  
-  - Path: node  
-  - C:\path\tiddly-node-saver  
-  - server.js
+  - __Path__: node  
+  - __Startup directory__: C:\path\tiddly-node-saver  
+  - __Arguments__: server.js
   
 Click the "Install service" button and then start the "tiddlysaver" process. The process should henceforth start automatically as a service.  
