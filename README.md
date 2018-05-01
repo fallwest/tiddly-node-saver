@@ -38,11 +38,11 @@ You probably need to set ```config.options.chkHttpReadOnly``` to false in order 
 
 ## Run as a Windows service
 
-Download NSSM from <https://nssm.cc/> or install with Chocolatey  
-Run command ```nssm install tiddlysaver```  
-Fill in the form with the following values:  
-  - Path: node  
-  - C:\path\tiddly-node-saver  
-  - server.js
+1. Download [NSSM](https://nssm.cc/) or install with Chocolatey  
+1. Run command ```nssm install tiddlysaver```  
+1. Fill in the form with the following values:  
+    - Path: node  
+    - C:\path\tiddly-node-saver  
+    - server.js
   
 Click the "Install service" button and then start the "tiddlysaver" process. The process should henceforth start automatically as a service.  
