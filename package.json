@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/fallwest/tiddly-node-saver#readme",
   "dependencies": {
+    "connect-inject": "^0.4.0",
     "express": "^4.16.3"
   }
 }

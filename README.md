@@ -1,42 +1,26 @@
-## Installation
+# tiddly-node-saver
+Serves (and saves) your [Classic TiddlyWiki](https://classic.tiddlywiki.com/) from your Dropbox or other type of shared folder.
 
-### Add saver code to your TiddlyWiki	
+## Prerequisites
 
-Create a new tiddler with the following code:
+Requires a recent versions of Node and Npm.
 
-	//{{{
-	var saveFile = function(fileUrl,content) {
-		var saver = document.cookie.replace(/(?:(?:^|.*;\s*)tiddlysaver\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-		if(saver === "yes") {
-	        jQuery.ajax({
-	            type: 'POST',    
-	            url: '/receive',
-	    		data: content,
-	            success: function(msg){
-	                console.log(msg);
-	            }
-	        });
-	    	console.log("sent");
-	    	return true;
-		}else{
-			r = ieSaveFile(fileUrl,content);
-			if(!r)
-				r = HTML5DownloadSaveFile(fileUrl,content);
-			if(!r)
-				r = manualSaveFile(fileUrl,content);
-			return r;
-		}
-	};
+## Install
+
+### Clone repository:  
+
+	git clone https://github.com/fallwest/tiddly-node-saver.git  
+
+Alternatively, you can download files without Git.
+
+### Install library dependencies  
+Run the following command under the root directory:  
 	
-	//}}}
+	npm install
 
-Tag with SystemConfig and save. This code will only override default saving behaviour if your tiddlywiki i served by tiddly-node-saver.
+## Configure
 
-### Configure and install server 
-
-Clone or download tiddly-node-saver
-
-Replace config file values with your own in config.json: 
+Replace ```config.json``` file values with your own: 
 
 	{
 	 "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
@@ -44,16 +28,15 @@ Replace config file values with your own in config.json:
 	 "port" : 8083
 	}
 
-Use the folders where your tiddlers live for ```dropBoxFolder```  
-Add all tiddlywiki files you want to be able to serve and save to the ```tiddlers``` array  
-Run command ```npm install``` to install dependencies
+Use the folder where your tiddlers live as the value for ```dropBoxFolder```  
+Add all tiddlywiki files you want to be able to serve and save to the ```tiddlers``` array
 
-### Run server
+## Run server
 Run command ```node server.js``` to start server  
 Navigate to ```http://localhost:8083/worktiddlywiki.html``` to view your wiki  
 You probably need to set ```config.options.chkHttpReadOnly``` to false in order to enable saving 
 
-## Running as a service with NSSM
+## Run as a Windows service
 
 Download NSSM from <https://nssm.cc/> or install with Chocolatey  
 Run command ```nssm install tiddlysaver```  
