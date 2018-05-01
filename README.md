@@ -24,7 +24,7 @@ Replace ```config.json``` file values with your own:
 
 	{
 	 "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
-	 "tiddlers" : ["worktiddlywiki.html", "perstiddlywiki"],
+	 "tiddlers" : ["worktiddlywiki.html", "perstiddlywiki.html"],
 	 "port" : 8083
 	}
 
