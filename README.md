@@ -31,7 +31,7 @@ Replace ```config.json``` file values with your own:
 Use the folder where your tiddlers live as the value for ```dropBoxFolder```  
 Add all tiddlywiki files you want to be able to serve and save to the ```tiddlers``` array
 
-## Run server
+## Run
 Run command ```node server.js``` to start server  
 Navigate to ```http://localhost:8083/worktiddlywiki.html``` to view your wiki  
 You probably need to set ```config.options.chkHttpReadOnly``` to false in order to enable saving 
