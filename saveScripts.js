@@ -1,5 +1,4 @@
-const getSaveScript = () => {
-return `
+const getSaveScript = () => `
 <script type="text/javascript">
 var saveFile = function(fileUrl,content) {
 	var saver = document.cookie.replace(/(?:(?:^|.*;\\s*)tiddlysaver\\s*\\=\\s*([^;]*).*$)|^.*$/, "$1");
@@ -25,10 +24,9 @@ var saveFile = function(fileUrl,content) {
 };
 </script>`;
 
-};
+const getPostScript = () => "\n\n<!--POST-SCRIPT-END-->\n\n</body>\n</html>";
 
-const getPostScript = () => {return "\n\n<!--POST-SCRIPT-END-->\n\n</body>\n</html>";
+module.exports = {
+  getSaveScript: getSaveScript,
+  getPostScript: getPostScript
 };
-
-module.exports = {getSaveScript: getSaveScript,
-                  getPostScript: getPostScript };
