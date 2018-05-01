@@ -38,7 +38,7 @@ You probably need to set ```config.options.chkHttpReadOnly``` to false in order 
 
 ## Run as a Windows service
 
-1. Download [NSSM](https://nssm.cc/) or install with Chocolatey  
+1. Download [NSSM](https://nssm.cc/) or install with [Chocolatey](https://chocolatey.org/)  
 1. Run command ```nssm install tiddlysaver```  
 1. Fill in the form with the following values:  
     - Path: node  
