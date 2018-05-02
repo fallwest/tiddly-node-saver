@@ -28,9 +28,9 @@ app.use((req, res, next) => {
 
 app.use(
   connectInject({
+    include: config.tiddlers,
     rules: [
       {
-        include: config.tiddlers,
         match: postScriptPattern,
         fn: function(w, s) {
           return w + s;
