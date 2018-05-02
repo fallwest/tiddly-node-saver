@@ -3,7 +3,7 @@ const http = require("http");
 const fs = require("fs");
 const app = express();
 const path = require("path");
-const connectInject = require("connect-inject");
+const connectInject = require("./connect-inject");
 const saveScripts = require("./saveScripts");
 
 const config = require("./config.json");
@@ -30,6 +30,7 @@ app.use(
   connectInject({
     rules: [
       {
+        include: config.tiddlers,
         match: postScriptPattern,
         fn: function(w, s) {
           return w + s;
