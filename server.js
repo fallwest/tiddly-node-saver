@@ -9,7 +9,7 @@ const saveScripts = require("./saveScripts");
 const config = require("./config.json");
 
 const postScriptPattern = /<\!--POST-SCRIPT-START-->/;
-const postScriptPatternLength = 24;
+const postScriptTagLength = 24;
 
 // Remove leading slash
 const getWhiteListIndex = url => config.tiddlers.indexOf(url.substring(1)); 
@@ -52,7 +52,7 @@ app.post("/receive", (request, respond) => {
     throw new Error("Tried to save tiddler not in white list.");
   }
 
-  let filePath = path.join(config.dropBoxFolder, tiddlyFile);
+  const filePath = path.join(config.dropBoxFolder, tiddlyFile);
 
   if (!filePath || filePath.indexOf(".html") < 0) {
     throw new Error("Failed to get tiddler file path.");
@@ -64,7 +64,7 @@ app.post("/receive", (request, respond) => {
 
   request.on("end", () => {
     const insertPoint =
-      body.search(postScriptPattern) + postScriptPatternLength;
+      body.search(postScriptPattern) + postScriptTagLength;
 
     //Remove save script when saving
     let content = body.substring(0, insertPoint);

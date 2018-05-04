@@ -21,7 +21,6 @@
 module.exports = function inject(opt) {
     // options
     var opt = opt || {};
-    var ignore = opt.ignore || opt.excludeList || ['.js', '.css', '.svg', '.ico', '.woff', '.png', '.jpg', '.jpeg'];
     var include = opt.include || [];
     var html = opt.html || _html;
     var rules = opt.rules || [{
@@ -110,11 +109,6 @@ module.exports = function inject(opt) {
       var url = req.url;
       var ignored = false;
       if (!url) return true;
-      ignore.forEach(function(item) {
-        if (~url.indexOf(item)) {
-          ignored = true;
-        }
-      });
 
       include.forEach(function(item) {
         if (!~url.indexOf(item)) {
