@@ -22,6 +22,10 @@ var saveFile = function(fileUrl,content) {
 		return r;
 	}
 };
+
+if(typeof config.options.chkHttpReadOnly === "boolean"){
+	config.options.chkHttpReadOnly = false;
+}
 </script>`;
 
 const getPostScript = () => "\n\n<!--POST-SCRIPT-END-->\n\n</body>\n</html>";
