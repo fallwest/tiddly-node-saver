@@ -3,6 +3,7 @@ const http = require("http");
 const fs = require("fs");
 const app = express();
 const path = require("path");
+const moment = require("moment");
 const connectInject = require("./connect-inject");
 const saveScripts = require("./saveScripts");
 
@@ -58,11 +59,24 @@ app.post("/receive", (request, respond) => {
     throw new Error("Failed to get tiddler file path.");
   }
 
+  const fileTime = fs.statSync(filePath).mtime;
+  const lastSaved =  moment.utc(fileTime);
+  const senderLastSaved = moment.utc(request.query.lastSaved);
+  const conflict = lastSaved.isAfter(senderLastSaved, "second");
+  
+  if(conflict){
+    const saveConflictMessage = `Dropbox file is newer. Local: ${senderLastSaved}. Server: ${lastSaved}`;
+    console.error(saveConflictMessage);
+    respond.status(500).send(saveConflictMessage);
+    
+    return;
+  }    
+
   request.on("data", data => {
     body += data.toString();
   });
 
-  request.on("end", () => {
+  request.on("end", () => {    
     const insertPoint =
       body.search(postScriptPattern) + postScriptTagLength;
 
