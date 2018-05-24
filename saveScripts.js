@@ -12,7 +12,10 @@ var saveFile = function(fileUrl,content) {
 				console.log("Wiki saved.");
 			},
 			error: function(xhr, textStatus, errorThrown) {
-				alert("Save failed: " + xhr.responseText);
+				var saveFailedMessage = "Save failed";
+				clearMessage();
+				displayMessage(saveFailedMessage);
+				alert(saveFailedMessage + ": " + xhr.responseText);
 			}		
 		});
 		
