@@ -50,4 +50,4 @@ Navigate to ```http://localhost:8083/worktiddlywiki.html``` to view your wiki
 Click the "Install service" button and then start the "tiddlysaver" process. The process should henceforth start automatically as a service.  
 
 ## Troubleshooting  
-- If the TiddlyWiki "save changes" button does not appear when you first navigate to your TiddlyWiki in you browser, try refreshing the page. The button should then always appear.
+- If the TiddlyWiki "save changes" button does not appear when you first navigate to your TiddlyWiki in your browser, try refreshing the page. The button should then always appear.
