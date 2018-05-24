@@ -1,9 +1,5 @@
 const getSaveScript = () => `
 <script type="text/javascript">
-if(!window.wikiModified){
-	window.wikiModified = new Date();
-}
-
 var saveFile = function(fileUrl,content) {
 	var saver = document.cookie.replace(/(?:(?:^|.*;\\s*)tiddlysaver\\s*\\=\\s*([^;]*).*$)|^.*$/, "$1");
 	if(saver === "yes") {
@@ -11,16 +7,15 @@ var saveFile = function(fileUrl,content) {
 			type: 'POST',    
 			url: '/receive?loc=' + document.location.pathname.substring(1) + '&lastSaved=' + window.wikiModified.toISOString(),
 			data: content,
-			success: function(msg){
+			success: function(msg) {
+				window.wikiModified = new Date();
 				console.log("Wiki saved.");
 			},
-			error: function(xhr, textStatus, errorThrown){
+			error: function(xhr, textStatus, errorThrown) {
 				alert("Save failed: " + xhr.responseText);
-				}		
+			}		
 		});
 		
-		window.wikiModified = new Date();
-
     	return true;
 	}else{
 		r = ieSaveFile(fileUrl,content);
@@ -34,6 +29,10 @@ var saveFile = function(fileUrl,content) {
 
 if(typeof config.options.chkHttpReadOnly === "boolean"){
 	config.options.chkHttpReadOnly = false;
+}
+
+if(!window.wikiModified){
+	window.wikiModified = new Date();
 }
 </script>`;
 
