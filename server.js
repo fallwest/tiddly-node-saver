@@ -22,6 +22,9 @@ app.use((req, res, next) => {
       maxAge: 1000 * 60 * 60 * 24 * 365,
       httpOnly: false
     });
+    
+  } else if(req.url.substring(1).toLowerCase().indexOf("html") > 0){
+    console.warn("Served html file not in white list: %s", req.url);
   }
 
   next(); // <-- important!
@@ -50,13 +53,17 @@ app.post("/receive", (request, respond) => {
   const tiddlyFile = request.query.loc;
 
   if (!getWhiteListIndex(tiddlyFile)) {
-    throw new Error("Tried to save tiddler not in white list.");
+    const notInWhiteListMessage = "Tried to save tiddler not in white list.";
+    console.error(notInWhiteListMessage);
+    respond.status(500).send(notInWhiteListMessage);
   }
 
   const filePath = path.join(config.dropBoxFolder, tiddlyFile);
 
   if (!filePath || filePath.indexOf(".html") < 0) {
-    throw new Error("Failed to get tiddler file path.");
+    const failedToGetPathMessage = "Failed to get tiddler file path.";
+    console.error(failedToGetPathMessage);
+    respond.status(500).send(failedToGetPathMessage);
   }
 
   const fileTime = fs.statSync(filePath).mtime;
