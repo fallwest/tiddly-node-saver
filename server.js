@@ -13,7 +13,7 @@ const postScriptPattern = /<\!--POST-SCRIPT-START-->/;
 const postScriptTagLength = 24;
 
 // Remove leading slash
-const getWhiteListIndex = url => config.tiddlers.indexOf(url.substring(1)); 
+const getWhiteListIndex = url => config.tiddlers.toLowerCase().indexOf(url.toLowerCase().substring(1)); 
 
 app.use((req, res, next) => {
   if (getWhiteListIndex(req.url) > -1) {
