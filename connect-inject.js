@@ -110,11 +110,9 @@ module.exports = function inject(opt) {
       var ignored = false;
       if (!url) return true;
 
-      include.forEach(function(item) {
-        if (!~url.indexOf(item)) {
-          ignored = true;
-        }
-      });
+      if(include.indexOf(url.substring(1)) === -1){
+        ignored = true;
+      }
 
       return ignored;
     }

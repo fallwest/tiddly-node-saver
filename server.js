@@ -12,26 +12,36 @@ const config = require("./config.json");
 const postScriptPattern = /<\!--POST-SCRIPT-START-->/;
 const postScriptTagLength = 24;
 
-const getWhiteListIndex = (url) => {
+const getLowerCaseWhiteList = () => {
   const lowerCaseWhiteListFiles = [];
   config.tiddlers.forEach((tiddler) =>{
     lowerCaseWhiteListFiles.push(tiddler.toLowerCase());
   });
 
+  return lowerCaseWhiteListFiles;
+}
+
+const getWhiteListIndex = (url) => {
+  const lowerCaseWhiteListFiles = getLowerCaseWhiteList();
+
   // Remove leading slash using substring  
-  return lowerCaseWhiteListFiles.indexOf(url.toLowerCase().substring(1)); 
+  var reqUrl = url.indexOf("/") === 0 ? url.toLowerCase().substring(1) : url;
+
+  return lowerCaseWhiteListFiles.indexOf(reqUrl) > - 1; 
 } 
 
 app.use((req, res, next) => {
-  if (getWhiteListIndex(req.url) > -1) {
-    // Set a client cookie if we serve a whitelist tiddlywiki
-    res.cookie("tiddlysaver", "yes", {
-      maxAge: 1000 * 60 * 60 * 24 * 365,
-      httpOnly: false
-    });
-    
-  } else if(req.url.substring(1).toLowerCase().indexOf("html") > 0){
-    console.warn("Served html file not in white list: %s", req.url);
+  if(req.method === "GET") {
+    if (getWhiteListIndex(req.url) > -1) {
+      // Set a client cookie if we serve a whitelist tiddlywiki
+      res.cookie("tiddlysaver", "yes", {
+        maxAge: 1000 * 60 * 60 * 24 * 365,
+        httpOnly: false
+      });
+      
+    } else if(req.url.substring(1).toLowerCase().indexOf("html") > 0){
+      console.warn("Served html file not in white list: %s", req.url);
+    }  
   }
 
   next(); // <-- important!
@@ -39,7 +49,7 @@ app.use((req, res, next) => {
 
 app.use(
   connectInject({
-    include: config.tiddlers,
+    include: getLowerCaseWhiteList(),
     rules: [
       {
         match: postScriptPattern,
