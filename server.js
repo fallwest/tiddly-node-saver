@@ -25,7 +25,7 @@ const getWhiteListIndex = (url) => {
   const lowerCaseWhiteListFiles = getLowerCaseWhiteList();
 
   // Remove leading slash using substring  
-  var reqUrl = url.indexOf("/") === 0 ? url.toLowerCase().substring(1) : url;
+  var reqUrl = url.indexOf("/") === 0 ? url.toLowerCase().substring(1) : url.toLowerCase();
 
   return lowerCaseWhiteListFiles.indexOf(reqUrl) > - 1; 
 } 

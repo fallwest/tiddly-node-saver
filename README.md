@@ -51,3 +51,4 @@ Click the "Install service" button and then start the "tiddlysaver" process. The
 
 ## Troubleshooting  
 - If the TiddlyWiki "save changes" button does not appear when you first navigate to your TiddlyWiki in your browser, try refreshing the page. The button should then always appear.
+- The first time you load, try loading your wiki with browser caching turned off (easiest way, have developer console open - F12 key) to ensure that you get a fresh copy of your wiki back from the server.
