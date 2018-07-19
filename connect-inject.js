@@ -106,7 +106,7 @@ module.exports = function inject(opt) {
     }
   
     function leave(req) {
-      var url = req.url;
+      var url = req.url.toLowerCase();
       var ignored = false;
       if (!url) return true;
 
