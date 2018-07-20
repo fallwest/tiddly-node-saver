@@ -10,6 +10,7 @@ Serves (and saves) your [Classic TiddlyWiki](https://classic.tiddlywiki.com/) fr
 ## Prerequisites
 
 - Requires a recent version of Node and NPM.
+- Only works with [Classic TiddlyWiki](https://classic.tiddlywiki.com/). Latest version available on [Git](https://github.com/TiddlyWiki/TiddlyWiki).
 
 ## Install
 
