@@ -12,44 +12,9 @@ const config = require("./config.json");
 const postScriptPattern = /<\!--POST-SCRIPT-START-->/;
 const postScriptTagLength = 24;
 
-const getLowerCaseWhiteList = () => {
-  const lowerCaseWhiteListFiles = [];
-  config.tiddlers.forEach((tiddler) =>{
-    lowerCaseWhiteListFiles.push(tiddler.toLowerCase());
-  });
-
-  return lowerCaseWhiteListFiles;
-}
-
-const getWhiteListIndex = (url) => {
-  const lowerCaseWhiteListFiles = getLowerCaseWhiteList();
-
-  // Remove leading slash using substring  
-  var reqUrl = url.indexOf("/") === 0 ? url.toLowerCase().substring(1) : url.toLowerCase();
-
-  return lowerCaseWhiteListFiles.indexOf(reqUrl) > - 1; 
-} 
-
-app.use((req, res, next) => {
-  if(req.method === "GET") {
-    if (getWhiteListIndex(req.url) > -1) {
-      // Set a client cookie if we serve a whitelist tiddlywiki
-      res.cookie("tiddlysaver", "yes", {
-        maxAge: 1000 * 60 * 60 * 24 * 365,
-        httpOnly: false
-      });
-      
-    } else if(req.url.substring(1).toLowerCase().indexOf("html") > 0){
-      console.warn("Served html file not in white list: %s", req.url);
-    }  
-  }
-
-  next(); // <-- important!
-});
-
 app.use(
   connectInject({
-    include: getLowerCaseWhiteList(),
+    include: ".htm",
     rules: [
       {
         match: postScriptPattern,
@@ -68,12 +33,6 @@ app.use(express.static(config.dropBoxFolder + "/files"));
 app.post("/receive", (request, respond) => {
   let body = "";
   const tiddlyFile = request.query.loc;
-
-  if (!getWhiteListIndex(tiddlyFile)) {
-    const notInWhiteListMessage = "Tried to save tiddler not in white list.";
-    console.error(notInWhiteListMessage);
-    respond.status(500).send(notInWhiteListMessage);
-  }
 
   const filePath = path.join(config.dropBoxFolder, tiddlyFile);
 

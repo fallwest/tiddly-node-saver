@@ -21,7 +21,7 @@
 module.exports = function inject(opt) {
     // options
     var opt = opt || {};
-    var include = opt.include || [];
+    var include = opt.include || "";
     var html = opt.html || _html;
     var rules = opt.rules || [{
       match: /<\/body>/,
@@ -110,9 +110,9 @@ module.exports = function inject(opt) {
       var ignored = false;
       if (!url) return true;
 
-      if(include.indexOf(url.substring(1)) === -1){
+      if(url.toLowerCase().indexOf(include) === -1){
         ignored = true;
-      }
+      } 
 
       return ignored;
     }

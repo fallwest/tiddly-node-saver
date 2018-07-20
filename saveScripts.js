@@ -1,33 +1,23 @@
 const getSaveScript = () => `
 <script type="text/javascript">
-var saveFile = function(fileUrl,content) {
-	var saver = document.cookie.replace(/(?:(?:^|.*;\\s*)tiddlysaver\\s*\\=\\s*([^;]*).*$)|^.*$/, "$1");
-	if(saver === "yes") {
-		jQuery.ajax({
-			type: 'POST',    
-			url: '/receive?loc=' + document.location.pathname.substring(1) + '&lastSaved=' + window.wikiModified.toISOString(),
-			data: content,
-			success: function(msg) {
-				window.wikiModified = new Date();
-				console.log("Wiki saved.");
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				var saveFailedMessage = "Save failed";
-				clearMessage();
-				displayMessage(saveFailedMessage);
-				alert(saveFailedMessage + ": " + xhr.responseText);
-			}		
-		});
-		
-    	return true;
-	}else{
-		r = ieSaveFile(fileUrl,content);
-		if(!r)
-			r = HTML5DownloadSaveFile(fileUrl,content);
-		if(!r)
-			r = manualSaveFile(fileUrl,content);
-		return r;
-	}
+var saveFile = function(fileUrl,content) {	
+	jQuery.ajax({
+		type: 'POST',    
+		url: '/receive?loc=' + document.location.pathname.substring(1) + '&lastSaved=' + window.wikiModified.toISOString(),
+		data: content,
+		success: function(msg) {
+			window.wikiModified = new Date();
+			console.log("Wiki saved.");
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			var saveFailedMessage = "Save failed";
+			clearMessage();
+			displayMessage(saveFailedMessage);
+			alert(saveFailedMessage + ": " + xhr.responseText);
+		}		
+	});
+
+	return true;
 };
 
 if(typeof config.options.chkHttpReadOnly === "boolean"){

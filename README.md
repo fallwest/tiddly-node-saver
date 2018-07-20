@@ -5,10 +5,11 @@ Serves (and saves) your [Classic TiddlyWiki](https://classic.tiddlywiki.com/) fr
 
 - Supports viewing and saving multiple TiddlyWikis without browser plugins
 - Protects against overwriting changes from other sources accessing the same wiki (e.g. phone apps, other browser windows)
+- Should run on any OS with Node support
 
 ## Prerequisites
 
-Requires a recent version of Node and NPM.
+- Requires a recent version of Node and NPM.
 
 ## Install
 
@@ -25,16 +26,14 @@ Run the following command under the root directory:
 
 ## Configure
 
-Replace ```config.json``` file values with your own: 
+Replace the Dropbox (or other kind of shared folder) path in ```config.json``` with the path to the folder where your tiddlers live: 
 
 	{
 	 "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
-	 "tiddlers" : ["worktiddlywiki.html", "perstiddlywiki.html"],
 	 "port" : 8083
 	}
 
-Use the folder where your tiddlers live as the value for ```dropBoxFolder```  
-Add all tiddlywiki files you want to be able to serve and save to the ```tiddlers``` array
+You can also change the port if you need to.
 
 ## Run
 Run command ```node server.js``` to start server  
