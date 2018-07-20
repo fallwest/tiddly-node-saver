@@ -37,7 +37,7 @@ You can also change the port if you need to.
 
 ## Run
 Run command ```node server.js``` to start server  
-Navigate to ```http://localhost:8083/worktiddlywiki.html``` to view your wiki  
+Navigate to ```http://localhost:8083/yourtiddlywiki.html``` to view your wiki (be sure to use the name of your own tiddlywiki instead of ```yourtiddlywiki.html```)
 
 ## Run as a Windows service
 
