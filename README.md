@@ -36,8 +36,8 @@ Replace the Dropbox (or other kind of shared folder) path in ```config.json``` w
 You can also change the port if you need to.
 
 ## Run
-Run command ```node server.js``` to start server  
-Navigate to ```http://localhost:8083/yourtiddlywiki.html``` to view your wiki (be sure to use the name of your own tiddlywiki instead of ```yourtiddlywiki.html```)
+1. Run command ```node server.js``` to start server  
+1. Navigate to ```http://localhost:8083/yourtiddlywiki.html``` to view your wiki (be sure to use the name of your own tiddlywiki instead of ```yourtiddlywiki.html```)
 
 ## Run as a Windows service
 
