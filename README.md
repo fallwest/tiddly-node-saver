@@ -31,10 +31,12 @@ Replace the Dropbox (or other kind of shared folder) path in ```config.json``` w
 
 	{
 	 "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
+	 "extraFolders" : ["images", "files"],
 	 "port" : 8083
 	}
-
-You can also change the port if you need to.
+### Advanced configuration
+- Add any extra folders for files or images that you reference in your wiki to the ```extraFolders``` array
+- Change the port number this server runs on if you need to.
 
 ## Run
 1. Run command ```node server.js``` to start server  

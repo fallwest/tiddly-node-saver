@@ -1,4 +1,5 @@
 {
-    "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
+    "dropBoxFolder" : "C:\\Users\\users\\Dropbox\\Apps\\Quine",
+    "extraFolders" : ["images", "files"],
     "port" : 8083
 }

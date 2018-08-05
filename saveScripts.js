@@ -3,7 +3,7 @@ const getSaveScript = () => `
 var saveFile = function(fileUrl,content) {	
 	jQuery.ajax({
 		type: 'POST',    
-		url: '/receive?loc=' + document.location.pathname.substring(1) + '&lastSaved=' + window.wikiModified.toISOString(),
+		url: '/receive?loc=' + btoa(document.location.pathname.substring(1)) + '&lastSaved=' + window.wikiModified.toISOString(),
 		data: content,
 		success: function(msg) {
 			window.wikiModified = new Date();

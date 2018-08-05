@@ -3,6 +3,7 @@ const http = require("http");
 const fs = require("fs");
 const app = express();
 const path = require("path");
+const atob = require("atob");
 const moment = require("moment");
 const connectInject = require("./connect-inject");
 const saveScripts = require("./saveScripts");
@@ -23,17 +24,22 @@ app.use(
         }
       }
     ],
-    snippet: saveScripts.getSaveScript()
+    snippet: saveScripts.getSaveScript()  
   })
 );
 
 app.use(express.static(config.dropBoxFolder));
+
+config.extraFolders.forEach((folder) => {
+  app.use(express.static(`${config.dropBoxFolder}/${folder}`));  
+});
+
 app.use(express.static(config.dropBoxFolder + "/files"));
 
 app.post("/receive", (request, respond) => {
   let body = "";
-  const tiddlyFile = request.query.loc;
-
+  const tiddlyFileBase64 = request.query.loc;
+  const tiddlyFile = atob(tiddlyFileBase64);
   const filePath = path.join(config.dropBoxFolder, tiddlyFile);
 
   if (!filePath || filePath.indexOf(".html") < 0) {
