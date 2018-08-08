@@ -27,7 +27,7 @@ Run the following command under the root directory:
 
 ## Configure
 
-Replace the Dropbox (or other kind of shared folder) path in ```config.json``` with the path to the folder where your tiddlers live: 
+Replace the Dropbox (or other kind of shared folder) path in ```config.json``` with the path to the folder where your Tiddlywiki html files live: 
 
 	{
 	 "dropBoxFolder" : "C:\\Users\\user\\Dropbox\\Apps\\Quine",
