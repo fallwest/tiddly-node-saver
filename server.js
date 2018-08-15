@@ -36,8 +36,6 @@ config.extraFolders.forEach((folder) => {
   app.use(express.static(`${config.dropBoxFolder}/${folder}`));  
 });
 
-app.use(express.static(config.dropBoxFolder + "/files"));
-
 app.post("/receive", (request, respond) => {
   let body = "";
   const tiddlyFileBase64 = request.query.loc;
