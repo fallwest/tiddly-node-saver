@@ -28,7 +28,9 @@ app.use(
   })
 );
 
-app.use(express.static(config.dropBoxFolder));
+app.use(express.static(config.dropBoxFolder, {
+        etag: false
+}));
 
 config.extraFolders.forEach((folder) => {
   app.use(express.static(`${config.dropBoxFolder}/${folder}`));  
