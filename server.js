@@ -74,7 +74,8 @@ app.post("/receive", (request, respond) => {
     content += saveScripts.getPostScript();
 
     fs.writeFile(filePath, content, "utf8", () => {
-      respond.end();
+	  respond.status(204).send();
+	  return;
     });
   });
 });
