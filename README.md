@@ -49,7 +49,11 @@ Replace the Dropbox (or other kind of shared folder) path in ```config.json``` w
 1. Fill in the form with the following values:  
 
 <img src="https://github.com/fallwest/tiddly-node-saver/blob/master/nssm_config.png"></img>  
-Click the "Install service" button and then start the "tiddlysaver" process. The process should henceforth start automatically as a service.  
+Click the "Install service" button and then start the "tiddlysaver" process. The process should henceforth start automatically as a service.
+
+## Run as a Linux service
+
+- Use pm2 to set up Node to automatically start server.js. Follow directions here: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04  
 
 ## Troubleshooting  
 - If the TiddlyWiki "save changes" button does not appear when you first navigate to your TiddlyWiki in your browser, try refreshing the page. The button should then always appear.
