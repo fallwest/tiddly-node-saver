@@ -53,7 +53,7 @@ Click the "Install service" button and then start the "tiddlysaver" process. The
 
 ## Run as a Linux service
 
-- Use pm2 to set up Node to automatically start server.js. Follow directions here: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04  
+- Use [pm2](http://pm2.keymetrics.io/) to set up Node to automatically start server.js. Follow directions here: [manage-application-with-pm2](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04#manage-application-with-pm2)  
 
 ## Troubleshooting  
 - If the TiddlyWiki "save changes" button does not appear when you first navigate to your TiddlyWiki in your browser, try refreshing the page. The button should then always appear.
