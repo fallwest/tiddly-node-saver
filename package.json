@@ -21,7 +21,7 @@
   "homepage": "https://github.com/fallwest/tiddly-node-saver#readme",
   "dependencies": {
     "atob": "^2.1.1",
-    "express": "^4.18.2",
+    "express": "^4.21.1",
     "moment": "^2.29.4"
   }
 }
