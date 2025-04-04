@@ -2,11 +2,11 @@
 config.macros.DropContent = {
 
     handler: function (place, macroName, params, wikifier, paramString, tiddler) {
-        var holder = createTiddlyElement(place, "div", "holder", null, "Drop your file here", {
+        const holder = createTiddlyElement(place, "div", "holder", null, "Drop your file here", {
             style: "border-style: dotted;width:150px;padding: 50px 0;text-align: center;"
         });
 
-        mimetype = createTiddlyElement(place, "select", "mimetype");
+        const mimetype = createTiddlyElement(place, "select", "mimetype");
 
         createTiddlyElement(mimetype, "option", null, null, "text/calendar");
         createTiddlyElement(mimetype, "option", null, null, "text/plain");
