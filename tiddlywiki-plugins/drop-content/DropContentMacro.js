@@ -1,5 +1,5 @@
 /***
-|Description|Insert text documents as new tiddlers that download content when opened|
+|Description|Insert text documents as new tiddlers that download content when opened. Note: requires the [[InlineJavascriptPlugin|https://tiddlytools.com/Classic/#InlineJavascriptPlugin]].|
 |Source     |https://github.com/fallwest/tiddlynodesaver/blob/james.westfall/drop_content_plugin/tiddlywikiplugins/dropcontent/DropContentMacro.js|
 |Version    |0.0.1|
 |Author     |James Westfall|
@@ -41,4 +41,4 @@ Insert the {{{<<DropContent>>}}} macro in a tiddler and drag text files onto the
             }
         }
     };
-//}}}
+    //}}}
