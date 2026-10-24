@@ -18,6 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+const { StringDecoder } = require("string_decoder");
+
 module.exports = function inject(opt) {
     // options
     var opt = opt || {};
@@ -124,7 +126,8 @@ module.exports = function inject(opt) {
       var writeHead = res.writeHead;
       var write = res.write;
       var end = res.end;
-  
+      var decoder = new StringDecoder("utf8");
+
       if (!accept(req) || leave(req)) {
         return next();
       }
@@ -141,7 +144,7 @@ module.exports = function inject(opt) {
   
       res.inject = res.write = function(string, encoding) {
         if (string !== undefined) {
-          var body = string instanceof Buffer ? string.toString(encoding) : string;
+          var body = string instanceof Buffer ? decoder.write(string) : string;
           if (exists(body) && !snip(res.data)) {
             res.push(snap(body));
             return true;
