@@ -37,7 +37,6 @@ config.extraFolders.forEach((folder) => {
 });
 
 app.post("/receive", (request, respond) => {
-  let body = "";
   const tiddlyFileBase64 = request.query.loc;
   const tiddlyFile = atob(tiddlyFileBase64);
   const filePath = path.join(config.dropBoxFolder, tiddlyFile);
@@ -46,6 +45,7 @@ app.post("/receive", (request, respond) => {
     const failedToGetPathMessage = "Failed to get tiddler file path.";
     console.error(failedToGetPathMessage);
     respond.status(500).send(failedToGetPathMessage);
+    return;
   }
 
   const fileTime = fs.statSync(filePath).mtime;
@@ -61,11 +61,11 @@ app.post("/receive", (request, respond) => {
     return;
   }    
 
-  request.on("data", data => {
-    body += data.toString();
-  });
+  const chunks = [];
+  request.on("data", data => chunks.push(data));
 
-  request.on("end", () => {    
+  request.on("end", () => {
+    const body = Buffer.concat(chunks).toString("utf8");
     const insertPoint =
       body.search(postScriptPattern) + postScriptTagLength;
 
